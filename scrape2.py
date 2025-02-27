@@ -43,33 +43,32 @@ for year in years:
             box_anime['en_title'] = en_title
 
             ### ANIME_ATTRIBUTES
-            leftside = soup_anime.find('div', class_='leftside')
-            try:
-                img = leftside.find('img')['data-src']
-            except:
-                img = None
-            box_anime['img'] = img
+            # leftside = soup_anime.find('div', class_='leftside')
+            # try:
+            #     img = leftside.find('img')['data-src']
+            # except:
+            #     img = None
+            # box_anime['img'] = img
 
-            for pad in leftside.find_all('div', class_='spaceit_pad'):
-                try:
-                    key = pad.text.strip()
-                    value = pad['href'].strip()
-                except:
-                    text = pad.text.split(':')
-                    key, value = text[0].strip(), text[1].strip()
+            # for pad in leftside.find_all('div', class_='spaceit_pad'):
+            #     try:
+            #         key = pad.text.strip()
+            #         value = pad['href'].strip()
+            #     except:
+            #         text = pad.text.split(':')
+            #         key, value = text[0].strip(), text[1].strip()
                 
-                box_anime[key] = value
+            #     box_anime[key] = value
 
             ### CHARACTER ATTRIBUTES
-            box_character = {}
-            box_character['jp_title'] = jp_title
-            box_character['en_title'] = en_title
-    
             for char in soup_anime.find_all('h3', class_='h3_characters_voice_actors'):
+                box_character = {}
+                box_character['jp_title'] = jp_title
+                box_character['en_title'] = en_title
+
                 char_link = char.find('a', href=True)['href']
                 
                 r_char = requests.get(char_link, headers=headers)
-
                 soup_char = BeautifulSoup(r_char.content, 'lxml')
 
                 name = soup_char.find('h2', "normal_header").text
@@ -84,17 +83,16 @@ for year in years:
                 box_character['fav'] = fav
                 box_character['img'] = img
 
-            container_anime.append(box_anime)
-            container_character.append(box_character)
+                container_character.append(box_character)
 
+            # container_anime.append(box_anime)
             print('[SAVING]', jp_title)
         
 
-        df_anime = pd.DataFrame(container_anime)
+        # df_anime = pd.DataFrame(container_anime)
         df_char = pd.DataFrame(container_character)
 
-        df_anime.to_csv(f"anime_{season}_{year}.csv")
+        # df_anime.to_csv(f"anime_{season}_{year}.csv")
         df_char.to_csv(f"char_{season}_{year}.csv")
         
         print(f"[EXPORTING] {season}-{year} dataset")
-

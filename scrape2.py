@@ -2,8 +2,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-years = [2023, 2024]
-seasons = ['winter', 'fall']#['winter', 'spring', 'summer', 'fall']
+years = [2024]
+seasons = ['spring', 'summer', 'fall']#['winter', 'spring', 'summer', 'fall']
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070213 BonEcho/2.0.0.2pre'

@@ -2,8 +2,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-years = [2024]
-seasons = ['spring', 'summer', 'fall']#['winter', 'spring', 'summer', 'fall']
+years = [2021, 2022, 2023, 2024]
+seasons = ['winter', 'spring', 'summer', 'fall']
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070213 BonEcho/2.0.0.2pre'
@@ -42,23 +42,23 @@ for year in years:
             box_anime['jp_title'] = jp_title
             box_anime['en_title'] = en_title
 
-            ### ANIME_ATTRIBUTES
-            # leftside = soup_anime.find('div', class_='leftside')
-            # try:
-            #     img = leftside.find('img')['data-src']
-            # except:
-            #     img = None
-            # box_anime['img'] = img
+            ## ANIME_ATTRIBUTES
+            leftside = soup_anime.find('div', class_='leftside')
+            try:
+                img = leftside.find('img')['data-src']
+            except:
+                img = None
+            box_anime['img'] = img
 
-            # for pad in leftside.find_all('div', class_='spaceit_pad'):
-            #     try:
-            #         key = pad.text.strip()
-            #         value = pad['href'].strip()
-            #     except:
-            #         text = pad.text.split(':')
-            #         key, value = text[0].strip(), text[1].strip()
+            for pad in leftside.find_all('div', class_='spaceit_pad'):
+                try:
+                    key = pad.text.strip()
+                    value = pad['href'].strip()
+                except:
+                    text = pad.text.split(':')
+                    key, value = text[0].strip(), text[1].strip()
                 
-            #     box_anime[key] = value
+                box_anime[key] = value
 
             ### CHARACTER ATTRIBUTES
             for char in soup_anime.find_all('h3', class_='h3_characters_voice_actors'):
@@ -89,10 +89,10 @@ for year in years:
             print('[SAVING]', jp_title)
         
 
-        # df_anime = pd.DataFrame(container_anime)
+        df_anime = pd.DataFrame(container_anime)
         df_char = pd.DataFrame(container_character)
 
-        # df_anime.to_csv(f"anime_{season}_{year}.csv")
+        df_anime.to_csv(f"anime_{season}_{year}.csv")
         df_char.to_csv(f"char_{season}_{year}.csv")
         
         print(f"[EXPORTING] {season}-{year} dataset")

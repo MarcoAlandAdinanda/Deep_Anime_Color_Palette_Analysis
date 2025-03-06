@@ -36,6 +36,8 @@ class ColorPaletteExtractor:
         # Convert image and prepare for processing
         image_rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
         pixels = image_rgb.reshape((-1, 3))
+        # print(pixels.shape)
+        # print(pixels)
     
         # Perform K-Means clustering
         kmeans = KMeans(n_clusters=num_clusters, random_state=42)

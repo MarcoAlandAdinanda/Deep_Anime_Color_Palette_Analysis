@@ -66,7 +66,7 @@ if __name__ == "__main__":
     processor = DataFramePaletteProcessor(
         dataframe=filtered_character,
         url_column='img',
-        num_clusters=10
+        num_clusters=30
     )
     
     # Add palette column with progress tracking

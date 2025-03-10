@@ -124,14 +124,19 @@ class ColorSorter:
 if __name__ == "__main__":
     extractor = ColorPaletteExtractor()
     try:
-        url = "https://cdn.myanimelist.net/images/characters/5/496454.jpg"
-        character_name = "Ruby Hoshino"
-        
+        # url = "https://cdn.myanimelist.net/images/characters/5/496454.jpg"
+        # character_name = "Ruby Hoshino"
+        url="https://cdn.myanimelist.net/images/characters/9/311327.jpg"
+        character_name = "Rem"
+
+        # url = "https://cdn.myanimelist.net/images/characters/15/422168.jpg"
+        # character_name = "Gojou Satoru"
+
         extractor.load_image_from_url(url)
         extractor.extract_palette(num_clusters=30)
         extractor.display_palette(character_name=character_name)
         
-        # print("Extracted Palette (BGR format):")
-        # print(extractor.get_palette())
+        print("Extracted Palette (BGR format):")
+        print(extractor.get_palette())
     except Exception as e:
         print(f"Error: {str(e)}")

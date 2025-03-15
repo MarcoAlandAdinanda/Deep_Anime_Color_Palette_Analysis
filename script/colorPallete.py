@@ -126,11 +126,13 @@ if __name__ == "__main__":
     try:
         # url = "https://cdn.myanimelist.net/images/characters/5/496454.jpg"
         # character_name = "Ruby Hoshino"
-        url="https://cdn.myanimelist.net/images/characters/9/311327.jpg"
-        character_name = "Rem"
+        # url="https://cdn.myanimelist.net/images/characters/9/311327.jpg"
+        # character_name = "Rem"
 
         # url = "https://cdn.myanimelist.net/images/characters/15/422168.jpg"
-        # character_name = "Gojou Satoru"
+        character_name = "Gojou Satoru"
+
+        url = 'https://cdn.myanimelist.net/images/characters/6/447550.jpg'
 
         extractor.load_image_from_url(url)
         extractor.extract_palette(num_clusters=30)
